@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/normalize.css" />
+    <link rel="stylesheet" href="/projetos.css">  </head>
+<header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="/sobre">Sobre mim</a></li>
+                <li><a href="/disciplinas">Disciplinas</a></li>
+                <li><a href="/projetos">Projetos</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+<body>
+
+<h1>Meus Projetos</h1>
+
+<ul>
+  <% projetos.forEach(p => { %>
+    <li>
+      <strong><%= p.titulo %></strong><br>
+      <%= p.descricao %><br>
+      <a href="<%= p.link %>">Ver Projeto</a>
+      <% if (p.concluido) { %>
+        ✅ Concluído
+      <% } else { %>
+        🚧 Em andamento
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
+
+<form action="/projetos" method="POST">
+  <h3>Adicionar novo projeto</h3>
+  <input name="titulo" placeholder="Título" required>
+  <input name="descricao" placeholder="Descrição" required>
+  <input name="link" placeholder="Link" required>
+  <button type="submit">Adicionar</button>
+</form>
+
+</body>

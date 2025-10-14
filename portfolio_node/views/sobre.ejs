@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/normalize.css" />
+    <link rel="stylesheet" href="/sobre.css" />
+  </head>
+<header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="/sobre">Sobre mim</a></li>
+                <li><a href="/disciplinas">Disciplinas</a></li>
+                <li><a href="/projetos">Projetos</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+<body>
+<div class="conteudo">
+  <div class="sobre">
+    <h1><strong>Sobre Mim</strong></h1>
+    <div class="img-circulo">
+      <img src="/img/paula.jpeg" alt="Paula" />
+    </div>
+    <a
+      href="certificados/PAULA TAMAY.pdf"
+      target="_blank"
+      rel="noopener noreferrer">
+      <strong>Currículo</strong>
+    </a>
+    <h2><%= estudante.nome %></h2>
+    <h3><%= estudante.curso %></h3>
+    <h3><%= estudante.instituicao %></h3>
+    <h3><%= estudante.ano %></h3>
+    <p>
+        Estudante entusiasmada de Ciência da Computação com foco em
+        Desenvolvimento Web. <br />
+        Apaixonada por explorar as nuances do design de interface e
+        desenvolvimento de aplicativos web. <br />
+        Possuo habilidades em HTML, CSS e JavaScript, e estou constantemente
+        expandindo meu conhecimento através de projetos pessoais e escolares.
+    </p>
+  </div>
+  <div class="softskills">
+    <h1><strong>SoftSkills</strong></h1>
+    <ul>
+      <li>
+        <strong>Comunicação: </strong>Tenho facilidade em me comunicar com
+          meus colegas e expressar ideias com clareza, o que contribui
+          bastante em apresentações e trabalhos em equipe.
+      </li>
+      <li>
+        <strong>Trabalho em grupo: </strong>Gosto de colaborar com outras
+          pessoas e valorizo diferentes perspectivas para alcançar os
+          melhores resultados.
+      </li>
+      <li>
+        <strong>Flexibilidade: </strong>Consigo me adaptar com facilidade
+          a mudanças repentinas, mantendo o foco nas soluções.
+      </li>
+      <li>
+        <strong>Empatia: </strong>Tenho facilidade em me colocar no lugar
+          do outro para compreender suas dificuldades ou situações pelas
+          quais esteja passando.
+      </li>
+    </ul>
+  </div>
+</div>
+</body>

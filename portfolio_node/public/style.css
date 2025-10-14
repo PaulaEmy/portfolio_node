@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap");
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  font-family: "Source Code Pro", monospace;
+}
+
+header {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in forwards;
+  position: relative;
+}
+
+/*##########    MENU    ##########*/
+
+.navbar {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: flex-end;
+  padding: 10px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.nav-links {
+  grid-column: span 1;
+  list-style: none;
+  margin: 10px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nav-links li {
+  margin: 0 20px;
+  margin-top: 10px;
+  font-size: 80%;
+}
+
+.nav-links a {
+  color: #d45b8c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #683545;
+  transition: 0.5s;
+}
+
+/*##########    TELA PRINCIPAL    ##########*/
+
+.portfolio {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in forwards;
+  gap: 50px;
+  background-color: #ffeef3;
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  h1 {
+    color: #d45b8c;
+    font-size: 4rem;
+  }
+  p {
+    font-size: 1.5rem;
+    color: #b85d7a;
+  }
+}
+
+.content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+
+@media (max-width: 600px) {
+  @media (max-width: 768px) {
+    body {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      background-color: white;
+      font-family: "Source Code Pro", monospace;
+      color: rgb(70, 70, 70);
+    }
+
+    .content,
+    .portfolio,
+    .education {
+      max-width: 100%;
+      padding: 0 16px;
+    }
+
+    .habilidades {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .education {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+
+    .education > .escola,
+    .education > .experience,
+    .education > .certificados {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .container {
+      grid-template-columns: 1fr;
+    }
+
+    .container > div {
+      padding: 30px;
+    }
+
+    .portfolio h1 {
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    .portfolio p {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .img-circulo {
+      right: 50%;
+      transform: translateX(50%);
+      top: -120px;
+      width: 150px;
+      height: 150px;
+    }
+
+    .about > .eu {
+      margin-left: 0;
+      padding: 20px;
+    }
+
+    .habilidades > .softskills,
+    .habilidades > .tech {
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    .works {
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .works h1 {
+      font-size: 2rem;
+    }
+
+    .contact {
+      max-width: 100%;
+      padding: 0 16px;
+      flex-direction: column;
+    }
+
+    footer ul {
+      font-size: 0.9rem;
+    }
+
+    .navbar {
+      justify-content: center;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .logo img {
+    width: 40px;
+    height: 40px;
+  }
+}

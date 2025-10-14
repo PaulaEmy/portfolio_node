@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Minhas Disciplinas</title>
+    <link rel="stylesheet" href="/disciplinas.css">
+  </head>
+  <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="/sobre">Sobre mim</a></li>
+                <li><a href="/disciplinas">Disciplinas</a></li>
+                <li><a href="/projetos">Projetos</a></li>
+                <li><a href="/contato">Contato</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+</header>
+  <body>
+    
+    <div class="conteudo">
+      <h1>Minhas Disciplinas</h1>
+      <div class="cursada">
+        <h2>Disciplinas Cursadas</h2>
+        <ul class="list">
+          <% disciplinas.cursadas.forEach(d => { %>
+            <li><%= d %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="andamento">
+      <h2>Em Andamento</h2>
+        <ul class="list">
+          <% disciplinas.andamento.forEach(d => { %>
+            <li><%= d %></li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

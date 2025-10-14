@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap");
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: linear-gradient(135deg, #ffe0ec, #fff);
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  background-color: white;
+  font-family: "Source Code Pro", monospace;
+  color: rgb(70, 70, 70);
+}
+
+/*##########    MENU    ##########*/
+
+.navbar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #d45b8c;
+  display: flex;
+  justify-content: center;
+  padding: 15px 20px;
+  z-index: 10;
+}
+ 
+.nav-links {
+  grid-column: span 1;
+  list-style: none;
+  margin: 10px;
+  padding: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+ 
+.nav-links li {
+  margin: 0 20px;
+  margin-top: 10px;
+  font-size: 80%;
+}
+ 
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+ 
+a:hover {
+  color: #683545;
+  transition: 0.5s;
+}
+
+/*##########    CONTATO    ##########*/
+
+.conteudo {
+  min-width: 300px;
+  margin: auto auto; 
+  background-color: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0px 4px 20px rgba(212, 91, 140, 0.25);
+  text-align: center;
+}
+
+.conteudo h1 {
+  color: #d45b8c;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.conteudo p {
+  text-decoration: none;
+  color: #d45b8c;
+  font-weight: bold;
+  margin: 15px 0;
+  transition: color 0.5s;
+}
+
+.conteudo a {
+  text-decoration: none;
+  color: #d45b8c;
+  font-weight: bold;
+  display: inline-block;
+  margin: 15px 0;
+  transition: color 0.5s;
+}
+
+.conteudo a:hover {
+  color: #683545;
+}
