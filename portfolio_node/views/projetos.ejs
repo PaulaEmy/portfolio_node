@@ -18,30 +18,136 @@
         </nav>
     </header>
 <body>
+  <div class="projetos">
+    <h1>Meus Projetos</h1>
+    <ul>
+      <% projetos.forEach(p => { %>
+      <li data-id="<%= p.id %>">
+        <strong><%= p.titulo %></strong><br>
+        <%= p.descricao %><br>
+        <a href="<%= p.link %>">Ver Projeto</a>
+        <% if (p.concluido) { %>
+          ✅ Concluído
+        <% } else { %>
+          🚧 Em andamento
+          <button class="btn-concluir" data-id="<%= p.id %>">Marcar como concluído</button>
+        <% } %>
+        <button class="btn-atualizar" onclick="abrirModal('<%= p.id %>', '<%= p.titulo %>', '<%= p.descricao %>', '<%= p.link %>')"> Atualizar </button>
 
-<h1>Meus Projetos</h1>
-
-<ul>
-  <% projetos.forEach(p => { %>
-    <li>
-      <strong><%= p.titulo %></strong><br>
-      <%= p.descricao %><br>
-      <a href="<%= p.link %>">Ver Projeto</a>
-      <% if (p.concluido) { %>
-        ✅ Concluído
-      <% } else { %>
-        🚧 Em andamento
-      <% } %>
-    </li>
-  <% }) %>
-</ul>
-
-<form action="/projetos" method="POST">
-  <h3>Adicionar novo projeto</h3>
-  <input name="titulo" placeholder="Título" required>
-  <input name="descricao" placeholder="Descrição" required>
-  <input name="link" placeholder="Link" required>
-  <button type="submit">Adicionar</button>
-</form>
-
+        <button class="btn-deletar" data-id="<%= p.id %>">Deletar Projeto</button>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+  <div class="form_projeto">
+    <form action="/projetos" method="POST">
+      <h3>Adicionar novo projeto</h3>
+      <input name="titulo" placeholder="Título" required>
+      <input name="descricao" placeholder="Descrição" required>
+      <input name="link" placeholder="Link" required>
+      <button type="submit">Adicionar</button>
+    </form>
+  </div>
 </body>
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="fecharModal" class="close">&times;</span>
+    <h3>Atualizar Projeto</h3>
+    <form id="formAtualizar" method="POST">
+      <input type="hidden" name="id" id="idProjeto">
+      <input type="text" name="titulo" id="tituloProjeto" placeholder="Título" required>
+      <input type="text" name="descricao" id="descricaoProjeto" placeholder="Descrição" required>
+      <input type="text" name="link" id="linkProjeto" placeholder="Link" required>
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+</div>
+<div id="modal-adicionar" class="modal">
+  <div class="modal-content">
+    <span id="fecharModal" class="close">&times;</span>
+    <h3>Atualizar Projeto</h3>
+    <form id="formAtualizar" method="POST">
+      <input type="hidden" name="id" id="idProjeto">
+      <input type="text" name="titulo" id="tituloProjeto" placeholder="Título" required>
+      <input type="text" name="descricao" id="descricaoProjeto" placeholder="Descrição" required>
+      <input type="text" name="link" id="linkProjeto" placeholder="Link" required>
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll(".btn-concluir").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
+      const id = e.target.dataset.id;
+      const resposta = await fetch(`/projetos/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (resposta.ok) {
+        alert("Projeto marcado como concluído!");
+        location.reload(); 
+      } else {
+        alert("Erro ao atualizar o projeto.");
+      }
+    });
+  });
+
+  document.querySelectorAll(".btn-deletar").forEach(btn => {
+    btn.addEventListener("click", async (e) => {
+      const id = e.target.dataset.id;
+      const resposta = await fetch(`/projetos/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (resposta.ok) {
+        alert("Projeto deletado com sucesso!");
+        location.reload(); 
+      } else {
+        alert("Erro ao deletar o projeto.");
+      }
+    });
+  });
+
+  // Abrir modal e preencher dados
+  function abrirModal(id, titulo, descricao, link) {
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('idProjeto').value = id;
+    document.getElementById('tituloProjeto').value = titulo;
+    document.getElementById('descricaoProjeto').value = descricao;
+    document.getElementById('linkProjeto').value = link;
+  }
+
+  // Fechar modal
+  document.getElementById('fecharModal').onclick = function() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  // Fechar clicando fora do modal
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('modal')) {
+      document.getElementById('modal').style.display = 'none';
+    }
+  }
+
+  // Enviar atualização
+  document.getElementById('formAtualizar').onsubmit = async function(e) {
+    e.preventDefault();
+    const id = document.getElementById('idProjeto').value;
+    const dados = {
+      titulo: document.getElementById('tituloProjeto').value,
+      descricao: document.getElementById('descricaoProjeto').value,
+      link: document.getElementById('linkProjeto').value,
+    };
+
+    await fetch(`/projetos/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+    });
+
+    location.reload(); // atualiza a página após salvar
+  }
+</script>
+
+

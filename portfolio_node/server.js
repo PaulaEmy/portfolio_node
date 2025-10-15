@@ -36,9 +36,21 @@ let disciplinas = {
 };
  
 let projetos = [
-  { id: 1, titulo: "Sistema de Diário de Pesadelos", descricao: "App em Flask para registrar pesadelos.", link: "https://github.com/seuusuario/diario-pesadelos", concluido: true },
-  { id: 2, titulo: "Site de Exportações", descricao: "Dashboard com Flask e Chart.js.", link: "https://github.com/seuusuario/export-data", concluido: true },
-  { id: 3, titulo: "Jogo em Python", descricao: "Jogo 2D feito com Pygame.", link: "#", concluido: false }
+  { id: 1, 
+    titulo: "Site de avaliação de projetos para Feira Técnica", 
+    descricao: "Projeto feito para meu TCC do Colégio UNIVAP Centro. Tem como objetivo a criação de um site com a intenção de facilitar a organização dos projetos e permitir que professores e visitantes possam avaliar digitalmente os trabalhos da feira técnica.", 
+    link: "https://github.com/PaulaEmy/tcc", 
+    concluido: true },
+  { id: 2, 
+    titulo: "Site para análise de dados de exportação e importação do estado de SP", 
+    descricao: "Primeira API para a FATEC. O objetivo desse site é permitir que qualquer usuário visualize os dados de importações e exportações do estado de SP com gráficos e filtros a fim de facilitar o entendimento das informações.", 
+    link: "https://github.com/Kernel-Panic-FatecSjc/KernelPanic", 
+    concluido: true },
+  { id: 3, 
+    titulo: "Site para centralizar e padronizar processos da Newe Log", 
+    descricao: "Projeto desenvolvido para a API (Aprendizagem por Projeto Integrado) do 2° Semestre do curso Desenvolvimento de Software Multiplataforma (DSM) em parceria com a empresa Newe Log, no projeto de Plataforma Integrada de Gestão.", 
+    link: "https://github.com/Kernel-Panic-FatecSjc/KernelPanic-2DSM-API", 
+    concluido: false }
 ];
  
 app.get("/", (req, res) => {
