@@ -63,8 +63,30 @@ app.get("/sobre", (req, res) => {
  
 app.get("/disciplinas", (req, res) => {
   res.render("disciplinas", { disciplinas });
+}); 
+
+app.post("/disciplinas", (req, res) => {
+  const { nome, status } = req.body;
+
+  if (status === "cursadas") {
+    disciplinas.cursadas.push(nome);
+  } else {
+    disciplinas.andamento.push(nome);
+  }
+
+  res.redirect("/disciplinas");
 });
- 
+
+app.post("/disciplinas/mover", (req, res) => {
+  const { nome } = req.body;
+
+  disciplinas.andamento = disciplinas.andamento.filter(d => d !== nome);
+
+  disciplinas.cursadas.push(nome);
+
+  res.redirect("/disciplinas");
+});
+
  
 app.get("/projetos", (req, res) => {
   res.render("projetos", { projetos });
@@ -78,14 +100,22 @@ app.post("/projetos", (req, res) => {
  
 app.put("/projetos/:id", (req, res) => {
   const id = parseInt(req.params.id);
+  const { titulo, descricao, link, concluido } = req.body;
+
   const projeto = projetos.find(p => p.id === id);
+
   if (projeto) {
-    projeto.concluido = true;
-    res.json({ message: "Projeto marcado como concluído!" });
+    if (titulo !== undefined) projeto.titulo = titulo;
+    if (descricao !== undefined) projeto.descricao = descricao;
+    if (link !== undefined) projeto.link = link;
+    if (concluido !== undefined) projeto.concluido = concluido;
+
+    res.json({ message: "Projeto atualizado com sucesso!", projeto });
   } else {
     res.status(404).json({ error: "Projeto não encontrado!" });
   }
 });
+
  
 app.delete("/projetos/:id", (req, res) => {
   const id = parseInt(req.params.id);
@@ -103,13 +133,14 @@ app.get("/contato", (req, res) => {
 });
  
 app.get("/dashboard", (req, res) => {
-  const totalDisciplinas = disciplinas.length;
+  const totalDisciplinas = disciplinas.cursadas.length + disciplinas.andamento.length;
   const totalProjetos = projetos.length;
   const concluidos = projetos.filter(p => p.concluido).length;
   const tecnologias = ["Node.js", "Flask", "Python", "HTML", "CSS", "JavaScript"];
- 
+
   res.render("dashboard", { totalDisciplinas, totalProjetos, concluidos, tecnologias });
 });
+
  
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);

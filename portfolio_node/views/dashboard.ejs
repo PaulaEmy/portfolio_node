@@ -18,16 +18,30 @@
         </nav>
     </header>
 <body>
+<div class="conteudo">
+  <h1>Dashboard</h1>
 
-<h1>Dashboard</h1>
-<p>Total de disciplinas: <%= totalDisciplinas %></p>
-<p>Total de projetos: <%= totalProjetos %></p>
-<p>Projetos concluídos: <%= concluidos %></p>
+  <div class="dashboard-cards">
+    <div class="card">
+      <h2>Total de Disciplinas</h2>
+      <p><%= totalDisciplinas %></p>
+    </div>
+    <div class="card">
+      <h2>Total de Projetos</h2>
+      <p><%= totalProjetos %></p>
+    </div>
+    <div class="card">
+      <h2>Projetos Concluídos</h2>
+      <p><%= concluidos %></p>
+    </div>
+  </div>
 
-<h3>Tecnologias mais usadas:</h3>
-<ul>
-  <% tecnologias.forEach(t => { %>
-    <li><%= t %></li>
-  <% }) %>
-</ul>
+  <h3>Tecnologias mais usadas:</h3>
+  <ul class="tec-container">
+    <% tecnologias.forEach(t => { %>
+      <li><%= t %></li>
+    <% }) %>
+  </ul>
+</div>
+
 </body>
