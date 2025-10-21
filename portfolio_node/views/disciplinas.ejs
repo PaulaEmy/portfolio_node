@@ -39,6 +39,7 @@
                 <input type="hidden" name="nome" value="<%= d %>">
                 <button type="submit" class="btn-mover">Mover para cursadas</button>
               </form>
+              <button onclick="removerDisciplina('<%= d %>')" class="btn-deletar">Deletar</button>
             </li>
           <% }) %>
         </ul>
@@ -86,4 +87,29 @@
       modal.style.display = 'none';
     }
   });
+
+  function removerDisciplina(nome) {
+    if (confirm(`Tem certeza que deseja remover a disciplina "${nome}"?`)) {
+      fetch('/disciplinas', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nome })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao deletar');
+        return res.json();
+      })
+      .then(data => {
+        alert(data.message);
+        location.reload(); 
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Erro ao remover a disciplina.");
+      });
+    }
+  }
+
 </script>

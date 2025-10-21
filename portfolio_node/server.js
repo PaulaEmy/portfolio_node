@@ -87,6 +87,14 @@ app.post("/disciplinas/mover", (req, res) => {
   res.redirect("/disciplinas");
 });
 
+app.delete("/disciplinas/:nome", (req, res) => {
+  const nome = req.params.nome;
+  disciplinas.cursadas = disciplinas.cursadas.filter(d => d !== nome);
+  disciplinas.andamento = disciplinas.andamento.filter(d => d !== nome);
+  res.json({ message: `Disciplina '${nome}' removida com sucesso!` });
+});
+
+
  
 app.get("/projetos", (req, res) => {
   res.render("projetos", { projetos });
